@@ -20,14 +20,18 @@ jobs:
         distribution: 'temurin'
         cache: gradle
 
+    # ขั้นตอนเพิ่มพิเศษ: แก้ไขโครงสร้างไฟล์จาก Windows ให้เป็น Linux 
+    - name: Fix gradlew line endings
+      run: sed -i 's/\r$//' gradlew
+
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
 
-    # เปลี่ยนจาก ./gradlew build เป็นคำสั่งสร้างไฟล์ APK โดยตรง
+    # สั่งคอมไพล์โปรเจกต์เป็นไฟล์ APK ออกมา
     - name: Build APK with Gradle
       run: ./gradlew assembleDebug
 
-    # เพิ่มคำสั่งนี้ เพื่อให้ GitHub ส่งไฟล์ APK ออกมาให้ดาวน์โหลดได้
+    # บันทึกไฟล์ APK ขึ้นเซิร์ฟเวอร์เพื่อให้กดดาวน์โหลดได้
     - name: Upload APK Artifact
       uses: actions/upload-artifact@v4
       with:
