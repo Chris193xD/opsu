@@ -598,7 +598,7 @@ public class GameData {
 	 */
 	@SuppressWarnings("deprecation")
 	public void drawGameElements(Graphics g, boolean breakPeriod, boolean firstObject, float alpha) {
-		boolean relaxAutoPilot = (GameMod.RELAX.isActive() || GameMod.AUTOPILOT.isActive());
+		boolean relaxAutoPilot = false;
 		int margin = (int) (width * 0.008f);
 		float uiScale = GameImage.getUIscale();
 
